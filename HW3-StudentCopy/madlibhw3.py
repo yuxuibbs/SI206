@@ -9,7 +9,15 @@
 # Deliverables:
 # 1) Print the orginal text (150 tokens)
 # 1) Print the new text
+
+
+# code based on madlib_generatorP3.py
 print("START*******")
+
+
+import nltk 
+from nltk.book import text2
+from nltk import word_tokenize,sent_tokenize
 
 
 print("\n\nEND*******")
