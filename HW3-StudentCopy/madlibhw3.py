@@ -20,4 +20,16 @@ from nltk.book import text2
 from nltk import word_tokenize,sent_tokenize
 
 
+# first 150 tokens
+tokens = text2[0:149]
+print("TOKENS")
+print(tokens)
+tagged_tokens = nltk.pos_tag(tokens) # gives us a tagged list of tuples
+print("TAGGED TOKENS")
+print(tagged_tokens)
+
+tagmap = {"NN":"a noun","NNS":"a plural noun","VB":"a verb","JJ":"an adjective"}
+substitution_probabilities = {"NN":.1,"NNS":.2,"VB":.25,"JJ":.25}
+
+
 print("\n\nEND*******")
