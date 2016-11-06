@@ -15,6 +15,14 @@ from bs4 import BeautifulSoup
 
 
 
-url = "https://www.si.umich.edu/programs/bachelor-science-information/bsi-admissions"
+url = "http://collemc.people.si.umich.edu/data/bshw3StarterFile.html"
 html = urlopen(url).read()
 soup = BeautifulSoup(html, "html.parser")
+
+for image in soup.find_all('img'):
+    print(image)
+
+print()
+
+for word in soup.find_all('p'):
+    print(word)
