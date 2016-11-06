@@ -18,6 +18,7 @@ print("START*******")
 import nltk 
 from nltk.book import text2
 from nltk import word_tokenize,sent_tokenize
+import random
 
 
 # first 150 tokens
@@ -34,6 +35,25 @@ tagmap = {"NN":"a noun",
           "JJ":"an adjective", 
           "UH":"an interjection"}
 substitution_probabilities = {"NN":.15,"CC":.1,"VB":.1,"JJ":.1, "UH":.1}
+
+
+def spaced(word):
+    if word in [",", ".", "?", "!", ":"]:
+        return word
+    else:
+        return " " + word
+
+final_words = []
+
+
+for (word, tag) in tagged_tokens:
+    if tag not in substitution_probabilities or random.random() > substitution_probabilities[tag]:
+        final_words.append(spaced(word))
+    else:
+        new_word = input("Please enter %s:\n" % (tagmap[tag]))
+        final_words.append(spaced(new_word))
+
+print ("".join(final_words))
 
 
 print("\n\nEND*******")
