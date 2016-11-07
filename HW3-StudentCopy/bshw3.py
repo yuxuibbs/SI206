@@ -19,7 +19,7 @@ import re
 url = "http://collemc.people.si.umich.edu/data/bshw3StarterFile.html"
 html = urlopen(url).read()
 soup = BeautifulSoup(html, "html.parser")
-changedHTML = html
+changedHTML = str(html)
 
 for image in soup.find_all('img'):
     print(image)
@@ -29,7 +29,10 @@ print()
 
 for word in soup.find_all('p'):
     print(word)
-    changedHTML.replace('student', "AMAZING student")
+    changedHTML.replace('student', 'AMAZING student')
+print(changedHTML)
 
 f = open('output.html', 'w')
 f.write(changedHTML)
+
+
