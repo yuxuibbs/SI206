@@ -12,17 +12,24 @@
 # Make sure the new page is uploaded to your GitHub account.
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import re
 
 
 
 url = "http://collemc.people.si.umich.edu/data/bshw3StarterFile.html"
 html = urlopen(url).read()
 soup = BeautifulSoup(html, "html.parser")
+changedHTML = html
 
 for image in soup.find_all('img'):
     print(image)
-
+    changedHTML = re.sub('( [s|S]tudents*)', 'AMAZING \1', changedHTML)
+    print(changedHTML)
 print()
 
 for word in soup.find_all('p'):
     print(word)
+    changedHTML.replace('student', "AMAZING student")
+
+f = open('output.html', 'w')
+f.write(changedHTML)
