@@ -23,11 +23,8 @@ import random
 
 # first 150 tokens
 tokens = text2[0:149]
-print("TOKENS")
-print(tokens)
-tagged_tokens = nltk.pos_tag(tokens) # gives us a tagged list of tuples
-print("TAGGED TOKENS")
-print(tagged_tokens)
+tagged_tokens = nltk.pos_tag(tokens)
+print("Original text:", " ".join(tokens))
 
 tagmap = {"NN":"a noun",
           "CC":"a coordinating conjunction",
@@ -53,7 +50,7 @@ for (word, tag) in tagged_tokens:
         new_word = input("Please enter %s:\n" % (tagmap[tag]))
         final_words.append(spaced(new_word))
 
-print ("".join(final_words))
+print("New text:", " ".join(final_words))
 
 
 print("\n\nEND*******")
