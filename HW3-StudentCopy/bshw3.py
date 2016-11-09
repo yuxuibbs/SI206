@@ -13,6 +13,7 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import re
+import os
 
 
 
@@ -23,14 +24,15 @@ changedHTML = str(html)
 
 for image in soup.find_all('img'):
     print(image)
-    changedHTML = re.sub('( [s|S]tudents*)', 'AMAZING \1', changedHTML)
-    print(changedHTML)
+    # changedHTML = re.sub('( [s|S]tudents*)', ' AMAZING \1', changedHTML)
+# print(changedHTML)
 print()
 
-for word in soup.find_all('p'):
-    print(word)
-    changedHTML.replace('student', 'AMAZING student')
-print(changedHTML)
+changedHTML = re.sub(r'( [s|S]tudents*)', r' AMAZING \1', changedHTML)
+# for word in soup.find_all('p'):
+#     print(word)
+    # changedHTML.replace('student', ' AMAZING student')
+# print(changedHTML)
 
 f = open('output.html', 'w')
 f.write(changedHTML)

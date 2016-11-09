@@ -3,6 +3,18 @@
 # hashtags #UMSI-206 #Proj3 in the tweet.
 
 # You will demo this live for grading.
+import tweepy
+import os
 
-print("""No output necessary although you 
-	can print out a success/failure message if you want to.""")
+
+auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
+auth.set_access_token(access_token,access_token_secret)
+
+api = tweepy.API(auth)
+#Now we can Create Tweets, Delete Tweets, and Find Twitter Users
+
+public_tweets = api.search('UMSI')
+
+
+for tweet in public_tweets:
+    print(tweet.text)

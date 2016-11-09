@@ -13,7 +13,6 @@
 import tweepy
 from textblob import TextBlob
 
-#Twitter API stuff
 
 auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
 auth.set_access_token(access_token,access_token_secret)
@@ -33,4 +32,4 @@ for tweet in public_tweets:
 
 
 print("Average subjectivity is", subjectivityTotal / len(public_tweets))
-print("Average polarity is", subjectivityTotal /  len(public_tweets))
+print("Average polarity is", subjectivityTotal / len(public_tweets))
