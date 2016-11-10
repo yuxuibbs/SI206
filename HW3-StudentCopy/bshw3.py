@@ -10,31 +10,36 @@
 
 # Deliverables
 # Make sure the new page is uploaded to your GitHub account.
+
+# Name: Yuxuan Chen
+
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import re
 import os
 
 
-
+# beautiful soup
 url = "http://collemc.people.si.umich.edu/data/bshw3StarterFile.html"
 html = urlopen(url).read()
 soup = BeautifulSoup(html, "html.parser")
-changedHTML = str(html)
+changedHTML = soup.prettify()
 
-for image in soup.find_all('img'):
-    print(image)
-    # changedHTML = re.sub('( [s|S]tudents*)', ' AMAZING \1', changedHTML)
-# print(changedHTML)
-print()
 
-changedHTML = re.sub(r'( [s|S]tudents*)', r' AMAZING \1', changedHTML)
-# for word in soup.find_all('p'):
-#     print(word)
-    # changedHTML.replace('student', ' AMAZING student')
-# print(changedHTML)
+# swap out main picture
+originalBigImg = 'https://testbed.files.wordpress.com/2012/09/bsi_exposition_041316_192.jpg'
+mainImg = 'https://thecubicle.us/images/banners/valkbanner2.jpg'
+changedHTML = changedHTML.replace(originalBigImg, mainImg)
 
-f = open('output.html', 'w')
-f.write(changedHTML)
+# change small logo pictures
+img = os.path.abspath('media/logo.png')
+changedHTML = re.sub(r'logo2.png', img, changedHTML);
+
+# change student to AMAZING students
+changedHTML = re.sub(r'( students*)', r' AMAZING \1', changedHTML)
+
+# create html file
+webpage = open('output.html', 'w')
+webpage.write(changedHTML)
 
 

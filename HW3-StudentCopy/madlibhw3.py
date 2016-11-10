@@ -10,8 +10,9 @@
 # 1) Print the orginal text (150 tokens)
 # 1) Print the new text
 
+# Name: Yuxuan Chen
+# most of this code is based on madlib_generatorP3.py
 
-# code based on madlib_generatorP3.py
 print("START*******")
 
 
@@ -20,29 +21,32 @@ from nltk.book import text2
 from nltk import word_tokenize,sent_tokenize
 import random
 
-
-# first 150 tokens
-tokens = text2[0:149]
-tagged_tokens = nltk.pos_tag(tokens)
-print("Original text:", " ".join(tokens))
-
-tagmap = {"NN":"a noun",
-          "CC":"a coordinating conjunction",
-          "VB":"a verb",
-          "JJ":"an adjective", 
-          "UH":"an interjection"}
-substitution_probabilities = {"NN":.15,"CC":.1,"VB":.1,"JJ":.1, "UH":.1}
-
-
 def spaced(word):
     if word in [",", ".", "?", "!", ":"]:
         return word
     else:
         return " " + word
 
+# first 150 tokens
+tokens = text2[0:149]
+tagged_tokens = nltk.pos_tag(tokens)
+
+# original text
+print("Original text:", " ".join(tokens))
+
+# parts of speech and replacement percentages
+tagmap = {"NN":"a noun",
+          "CC":"a coordinating conjunction",
+          "VB":"a verb",
+          "JJ":"an adjective", 
+          "UH":"an interjection"}
+
+substitution_probabilities = {"NN":.15,"CC":.1,"VB":.1,"JJ":.1, "UH":.1}
+
+
 final_words = []
 
-
+# madlib
 for (word, tag) in tagged_tokens:
     if tag not in substitution_probabilities or random.random() > substitution_probabilities[tag]:
         final_words.append(spaced(word))
@@ -50,6 +54,7 @@ for (word, tag) in tagged_tokens:
         new_word = input("Please enter %s:\n" % (tagmap[tag]))
         final_words.append(spaced(new_word))
 
+# new text
 print("New text:", " ".join(final_words))
 
 
